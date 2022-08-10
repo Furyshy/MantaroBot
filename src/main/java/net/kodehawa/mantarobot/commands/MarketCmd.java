@@ -401,6 +401,10 @@ public class MarketCmd {
             }
         }
 
+        if (itemNumber == 0) {
+            ctx.sendLocalized("commands.market.dump.invalid", warn + EmoteReference.ERROR);
+            return;
+        }
 
         var item = ItemHelper.fromAnyNoId(itemName, ctx.getLanguageContext()).orElse(null);
 
@@ -473,6 +477,11 @@ public class MarketCmd {
                 ctx.sendLocalized("commands.market.sell.invalid", warn + EmoteReference.ERROR);
                 return;
             }
+        }
+
+        if (itemNumber == 0) {
+            ctx.sendLocalized("commands.market.sell.invalid", warn + EmoteReference.ERROR);
+            return;
         }
 
         try {
@@ -619,6 +628,11 @@ public class MarketCmd {
                     itemName = itemName.replace(args[0], "").trim();
                 }
             }
+        }
+
+        if (itemNumber == 0) {
+            ctx.sendLocalized("commands.market.buy.invalid", warn + EmoteReference.ERROR);
+            return;
         }
 
         final var itemToBuy = ItemHelper.fromAnyNoId(itemName.replace("\"", ""), ctx.getLanguageContext())

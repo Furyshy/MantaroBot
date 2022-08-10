@@ -242,6 +242,11 @@ public class GambleCmds {
                         return;
                     }
 
+                    if (coinAmount == 0) {
+                        ctx.sendLocalized("general.invalid_number", EmoteReference.ERROR);
+                        return;
+                    }
+
                     if (coinAmount > TICKETS_MAX_AMOUNT) {
                         ctx.sendLocalized("commands.slots.errors.too_many_tickets", EmoteReference.ERROR, TICKETS_MAX_AMOUNT);
                         return;
