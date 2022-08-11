@@ -25,7 +25,6 @@ import com.sedmelluq.discord.lavaplayer.source.soundcloud.SoundCloudAudioSourceM
 import com.sedmelluq.discord.lavaplayer.source.twitch.TwitchStreamAudioSourceManager;
 import com.sedmelluq.discord.lavaplayer.source.vimeo.VimeoAudioSourceManager;
 import com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioSourceManager;
-import com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeHttpContextFilter;
 import com.sedmelluq.lava.extensions.youtuberotator.YoutubeIpRotatorSetup;
 import com.sedmelluq.lava.extensions.youtuberotator.planner.AbstractRoutePlanner;
 import com.sedmelluq.lava.extensions.youtuberotator.planner.RotatingNanoIpRoutePlanner;
@@ -64,12 +63,8 @@ public class MantaroAudioManager {
         this.playerManager = new DefaultAudioPlayerManager();
 
         //Youtube is special because rotation stuff.
-        var youtubeAudioSourceManager = new YoutubeAudioSourceManager(true);
+        var youtubeAudioSourceManager = new YoutubeAudioSourceManager();
         var config = MantaroData.config().get();
-
-        // Age restricted videos stuff
-        YoutubeHttpContextFilter.setPAPISID(config.getYtPapisId());
-        YoutubeHttpContextFilter.setPSID(config.getYtPSId());
 
         //IPv6 rotation config start
         if (!config.getIpv6Block().isEmpty()) {
